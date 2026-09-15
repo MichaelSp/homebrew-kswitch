@@ -33,5 +33,10 @@ cask "kubectl-switch" do
 
   binary "kubectl-switch"
 
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-dr", "com.apple.quarantine", "{{staged_path}}/kubectl-switch"]
+  end
+
   # No zap stanza required
 end

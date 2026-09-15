@@ -34,6 +34,11 @@ cask "kswitch" do
 
   binary "kswitch"
 
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-dr", "com.apple.quarantine", "{{staged_path}}/kswitch"]
+  end
+
   # No zap stanza required
 
 end
